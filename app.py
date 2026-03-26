@@ -6,9 +6,10 @@ from datetime import datetime
 # Configuración de la página
 st.set_page_config(page_title="CENSI - Simuladores", layout="wide")
 
-# CONEXIÓN A LA NUBE (SUPABASE)
+# CONEXIÓN SEGURA A LA NUBE
 def conectar():
-    return psycopg2.connect("postgresql://postgres.wiqsnrmbciciuopvpndb:USMPcscs1234$@aws-1-us-east-1.pooler.supabase.com:5432/postgres")
+    # Streamlit jala la URL desde los "Secrets" de forma invisible
+    return psycopg2.connect(st.secrets["DB_URL"])
 
 # --- MENÚ LATERAL ---
 st.sidebar.title("Navegación")
